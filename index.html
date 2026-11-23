@@ -1,0 +1,1268 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b18">
+<meta name="description" content="Rafael Lima — Python, Vendas, Dados e Empreendedorismo.">
+<title>Rafael Lima — Beyond Data.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #050b18;
+    --bg-light: #0a1428;
+    --blue: #168cff;
+    --blue-light: #69b7ff;
+    --cyan: #69e1ff;
+    --white: #f5f8ff;
+    --muted: #91a2bd;
+    --glass: rgba(255,255,255,0.045);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+body::selection {
+    background: var(--blue);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* BACKGROUND */
+
+.background-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: .17;
+}
+
+.glow.one {
+    background: #006dff;
+    top: -250px;
+    left: -180px;
+}
+
+.glow.two {
+    background: #00bfff;
+    bottom: -300px;
+    right: -200px;
+}
+
+/* NAVBAR */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 9%;
+    z-index: 100;
+    background: rgba(5,11,24,.72);
+    backdrop-filter: blur(22px);
+    border-bottom: 1px solid rgba(255,255,255,.055);
+    transition: .3s;
+}
+
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--blue-light);
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #a9b6ca;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-contact {
+    padding: 10px 19px;
+    border: 1px solid rgba(105,183,255,.4);
+    border-radius: 30px;
+    color: var(--blue-light) !important;
+}
+
+.nav-contact:hover {
+    background: var(--blue);
+    color: white !important;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 130px 20px 80px;
+    position: relative;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 17px;
+    border: 1px solid rgba(105,183,255,.22);
+    background: rgba(22,140,255,.07);
+    border-radius: 50px;
+    font-size: 12px;
+    color: var(--blue-light);
+    letter-spacing: 1px;
+    margin-bottom: 35px;
+    animation: fadeUp .8s ease both;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: #48d99b;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #48d99b;
+}
+
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(65px, 11vw, 145px);
+    line-height: .95;
+    letter-spacing: -8px;
+    font-weight: 600;
+    animation: fadeUp 1s .1s ease both;
+}
+
+.hero h1 span {
+    display: block;
+    background: linear-gradient(110deg, #fff 15%, #81bdff 50%, #168cff 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin-top: 35px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--muted);
+    animation: fadeUp 1s .2s ease both;
+}
+
+.hero-description strong {
+    color: white;
+    font-weight: 500;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    animation: fadeUp 1s .3s ease both;
+}
+
+.btn {
+    padding: 15px 25px;
+    border-radius: 40px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background: #168cff;
+    color: white;
+    box-shadow: 0 0 35px rgba(22,140,255,.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 35px rgba(22,140,255,.4);
+}
+
+.btn-secondary {
+    border: 1px solid rgba(255,255,255,.17);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,.08);
+    transform: translateY(-4px);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 35px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #62738e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.scroll-indicator span {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(transparent, var(--blue));
+    animation: scrollLine 2s infinite;
+}
+
+/* ABSTRACT ORBIT */
+
+.hero-orbit {
+    position: absolute;
+    width: min(75vw, 850px);
+    height: min(75vw, 850px);
+    border: 1px solid rgba(55,151,255,.08);
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotate 45s linear infinite;
+}
+
+.hero-orbit::before,
+.hero-orbit::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(55,151,255,.08);
+    border-radius: 50%;
+}
+
+.hero-orbit::before {
+    inset: 12%;
+}
+
+.hero-orbit::after {
+    inset: 25%;
+}
+
+.orbit-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    box-shadow: 0 0 25px var(--blue);
+    top: 12%;
+    left: 30%;
+}
+
+/* GENERAL */
+
+section {
+    padding: 130px 9%;
+}
+
+.section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 22px;
+}
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 5vw, 66px);
+    letter-spacing: -3px;
+    line-height: 1.1;
+    max-width: 750px;
+}
+
+.section-title span {
+    color: #6e9fcf;
+}
+
+.section-description {
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 570px;
+    margin-top: 25px;
+    font-size: 15px;
+}
+
+/* ABOUT */
+
+.about {
+    background: linear-gradient(180deg, transparent, rgba(12,30,59,.55), transparent);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-card {
+    padding: 42px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
+    position: relative;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.about-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(22,140,255,.4);
+}
+
+.about-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: #168cff;
+    filter: blur(100px);
+    opacity: .18;
+    right: -50px;
+    top: -60px;
+}
+
+.about-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.about-card p {
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 14px;
+    position: relative;
+}
+
+.about-card p + p {
+    margin-top: 15px;
+}
+
+/* TECHNOLOGIES */
+
+.tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.tech span {
+    border: 1px solid rgba(105,183,255,.2);
+    background: rgba(22,140,255,.07);
+    padding: 10px 16px;
+    border-radius: 30px;
+    color: #a7cfff;
+    font-size: 12px;
+    transition: .3s;
+}
+
+.tech span:hover {
+    background: rgba(22,140,255,.2);
+    transform: translateY(-3px);
+}
+
+/* AREAS */
+
+.areas {
+    text-align: center;
+}
+
+.areas .section-title {
+    margin: auto;
+}
+
+.areas .section-description {
+    margin: 25px auto 0;
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 65px;
+    text-align: left;
+}
+
+.area-card {
+    padding: 35px 30px;
+    min-height: 260px;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 22px;
+    background: rgba(255,255,255,.025);
+    transition: .4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.area-card:hover {
+    background: rgba(22,140,255,.07);
+    border-color: rgba(22,140,255,.35);
+    transform: translateY(-8px);
+}
+
+.area-icon {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    background: rgba(22,140,255,.12);
+    border-radius: 13px;
+    color: var(--blue-light);
+    font-size: 20px;
+    margin-bottom: 28px;
+}
+
+.area-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    margin-bottom: 13px;
+}
+
+.area-card p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+/* PROJECTS */
+
+.projects {
+    background: linear-gradient(180deg, transparent, rgba(10,25,49,.65), transparent);
+}
+
+.project-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.project-note {
+    font-size: 12px;
+    color: var(--muted);
+    max-width: 190px;
+    line-height: 1.7;
+}
+
+.project-box {
+    margin-top: 55px;
+    min-height: 340px;
+    border-radius: 25px;
+    padding: 55px;
+    background:
+        radial-gradient(circle at 80% 30%, rgba(22,140,255,.25), transparent 35%),
+        linear-gradient(120deg, #101f38, #081224);
+    border: 1px solid rgba(105,183,255,.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-content {
+    position: relative;
+    z-index: 2;
+    max-width: 470px;
+}
+
+.project-tag {
+    font-size: 10px;
+    color: var(--blue-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.project-content h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    margin: 18px 0;
+    letter-spacing: -1px;
+}
+
+.project-content p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.project-visual {
+    width: 260px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.project-visual .circle {
+    width: 190px;
+    height: 190px;
+    border: 1px solid rgba(105,183,255,.25);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 0 80px rgba(22,140,255,.12);
+}
+
+.project-visual .circle::before {
+    content: "";
+    width: 130px;
+    height: 130px;
+    border: 1px solid rgba(105,183,255,.35);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.project-visual .symbol {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 70px;
+    font-weight: 700;
+    color: var(--blue-light);
+    text-shadow: 0 0 40px rgba(22,140,255,.7);
+}
+
+/* FOOTVOLLEY */
+
+.footvolley {
+    padding-top: 100px;
+    padding-bottom: 120px;
+}
+
+.footvolley-box {
+    min-height: 380px;
+    padding: 65px;
+    border-radius: 28px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+        linear-gradient(90deg, rgba(5,11,24,.98), rgba(5,11,24,.55)),
+        url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1800&q=85') center 55%/cover;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.footvolley-box::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--blue);
+    filter: blur(160px);
+    opacity: .18;
+    right: -100px;
+}
+
+.footvolley-content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+}
+
+.footvolley-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(40px, 6vw, 65px);
+    letter-spacing: -3px;
+    margin-bottom: 20px;
+}
+
+.footvolley-content p {
+    font-size: 14px;
+    color: #c2d0e3;
+    line-height: 1.9;
+    max-width: 420px;
+}
+
+.footvolley-label {
+    color: var(--blue-light);
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+/* CONTACT */
+
+.contact {
+    text-align: center;
+    padding: 130px 20px;
+    background: radial-gradient(ellipse at center, rgba(22,140,255,.12), transparent 65%);
+}
+
+.contact .section-title {
+    margin: auto;
+    max-width: 800px;
+}
+
+.contact .section-description {
+    margin: 25px auto 35px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 35px 9%;
+    border-top: 1px solid rgba(255,255,255,.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+footer p {
+    color: #6e7d95;
+    font-size: 11px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 22px;
+}
+
+.footer-social a {
+    color: #91a2bd;
+    font-size: 12px;
+    transition: .3s;
+}
+
+.footer-social a:hover {
+    color: var(--blue-light);
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scrollLine {
+    0%, 100% {
+        transform: scaleY(.4);
+        opacity: .4;
+    }
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .9s ease, transform .9s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+    nav {
+        padding: 0 5%;
+    }
+
+    section {
+        padding: 100px 6%;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-box {
+        padding: 40px;
+    }
+}
+
+@media(max-width: 600px) {
+    nav {
+        height: 65px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .nav-links a:nth-child(2),
+    .nav-links a:nth-child(3) {
+        display: none;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .hero h1 {
+        letter-spacing: -4px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 230px;
+    }
+
+    .btn {
+        justify-content: center;
+    }
+
+    .hero-orbit {
+        width: 110vw;
+        height: 110vw;
+    }
+
+    section {
+        padding: 85px 6%;
+    }
+
+    .section-title {
+        letter-spacing: -2px;
+    }
+
+    .areas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .area-card {
+        min-height: auto;
+    }
+
+    .project-header {
+        display: block;
+    }
+
+    .project-note {
+        margin-top: 20px;
+    }
+
+    .project-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 35px 25px;
+    }
+
+    .project-content h3 {
+        font-size: 29px;
+    }
+
+    .project-visual {
+        align-self: center;
+        transform: scale(.85);
+    }
+
+    .footvolley-box {
+        padding: 40px 25px;
+        min-height: 400px;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 6%;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-glow">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+</div>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <a href="#inicio" class="logo">rafael<span>.</span></a>
+
+    <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#areas">Interesses</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato" class="nav-contact">Contato ↗</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero" id="inicio">
+
+    <div class="hero-orbit">
+        <div class="orbit-dot"></div>
+    </div>
+
+    <div class="hero-label">
+        <span class="status-dot"></span>
+        EXPLORANDO NOVAS POSSIBILIDADES
+    </div>
+
+    <h1>
+        Rafael
+        <span>Lima.</span>
+    </h1>
+
+    <p class="hero-description">
+        Conectando <strong>tecnologia, vendas e dados</strong>
+        para transformar ideias em soluções e oportunidades.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="#projetos" class="btn btn-primary">
+            Explorar projetos ↗
+        </a>
+
+        <a href="#sobre" class="btn btn-secondary">
+            Conheça minha jornada
+        </a>
+    </div>
+
+    <div class="scroll-indicator">
+        SCROLL TO EXPLORE
+        <span></span>
+    </div>
+
+</header>
+
+<!-- ABOUT -->
+
+<section class="about" id="sobre">
+
+    <div class="about-grid">
+
+        <div class="reveal">
+            <div class="section-label">01 / SOBRE MIM</div>
+
+            <h2 class="section-title">
+                Mais que números.
+                <span>Possibilidades.</span>
+            </h2>
+
+            <p class="section-description">
+                Sou Rafael Lima, profissional da área de vendas,
+                interessado em tecnologia, análise de dados e
+                empreendedorismo.
+                <br><br>
+                Atualmente, estou finalizando minha formação em
+                Python e expandindo meus conhecimentos para criar
+                ferramentas que conectem o mundo comercial à tecnologia.
+            </p>
+        </div>
+
+        <div class="about-card reveal">
+            <h3>Minha visão</h3>
+
+            <p>
+                Acredito que a tecnologia deve simplificar processos,
+                revelar oportunidades e ajudar pessoas e empresas
+                a tomarem decisões melhores.
+            </p>
+
+            <p>
+                Meu objetivo é unir minha experiência comercial
+                à programação para desenvolver soluções práticas,
+                inteligentes e que gerem resultados.
+            </p>
+
+            <div class="tech">
+                <span>Python</span>
+                <span>Dados</span>
+                <span>Vendas</span>
+                <span>Automação</span>
+                <span>Empreendedorismo</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- AREAS -->
+
+<section class="areas" id="areas">
+
+    <div class="reveal">
+        <div class="section-label">02 / MEU UNIVERSO</div>
+
+        <h2 class="section-title">
+            Onde ideias encontram <span>tecnologia.</span>
+        </h2>
+
+        <p class="section-description">
+            Algumas das áreas que despertam minha curiosidade
+            e direcionam meus projetos.
+        </p>
+    </div>
+
+    <div class="areas-grid">
+
+        <div class="area-card reveal">
+            <div class="area-icon">⌘</div>
+            <h3>Programação</h3>
+            <p>
+                Utilizando Python para desenvolver aplicações,
+                automatizar tarefas e resolver problemas reais.
+            </p>
+        </div>
+
+        <div class="area-card reveal">
+            <div class="area-icon">◈</div>
+            <h3>Análise de Dados</h3>
+            <p>
+                Transformando informações em insights,
+                identificando padrões e oportunidades de negócio.
+            </p>
+        </div>
+
+        <div class="area-card reveal">
+            <div class="area-icon">↗</div>
+            <h3>Vendas</h3>
+            <p>
+                Explorando tecnologia e inteligência comercial
+                para melhorar estratégias e resultados.
+            </p>
+        </div>
+
+        <div class="area-card reveal">
+            <div class="area-icon">⚡</div>
+            <h3>Automação</h3>
+            <p>
+                Criando soluções para eliminar tarefas repetitivas
+                e tornar processos mais eficientes.
+            </p>
+        </div>
+
+        <div class="area-card reveal">
+            <div class="area-icon">✳</div>
+            <h3>Empreendedorismo</h3>
+            <p>
+                Transformando ideias em projetos, identificando
+                problemas e construindo soluções.
+            </p>
+        </div>
+
+        <div class="area-card reveal">
+            <div class="area-icon">∞</div>
+            <h3>Aprendizado contínuo</h3>
+            <p>
+                Sempre explorando novas tecnologias,
+                conhecimentos e possibilidades.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section class="projects" id="projetos">
+
+    <div class="project-header reveal">
+
+        <div>
+            <div class="section-label">03 / DESENVOLVIMENTO</div>
+
+            <h2 class="section-title">
+                Ideias que ganham <span>vida.</span>
+            </h2>
+        </div>
+
+        <p class="project-note">
+            Projetos, experimentos e soluções desenvolvidas
+            ao longo da minha jornada.
+        </p>
+
+    </div>
+
+    <div class="project-box reveal">
+
+        <div class="project-content">
+
+            <div class="project-tag">EM CONSTRUÇÃO · PYTHON</div>
+
+            <h3>O próximo projeto começa com uma ideia.</h3>
+
+            <p>
+                Este espaço será dedicado a aplicações,
+                análises e ferramentas voltadas para vendas,
+                dados e automação de negócios.
+            </p>
+
+            <div class="tech">
+                <span>Python</span>
+                <span>Business Intelligence</span>
+                <span>Data Analytics</span>
+            </div>
+
+        </div>
+
+        <div class="project-visual">
+            <div class="circle">
+                <div class="symbol">{ }</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTVOLLEY -->
+
+<section class="footvolley">
+
+    <div class="footvolley-box reveal">
+
+        <div class="footvolley-content">
+
+            <div class="footvolley-label">
+                04 / ALÉM DA TECNOLOGIA
+            </div>
+
+            <h2>
+                Minha outra<br>
+                forma de conexão.
+            </h2>
+
+            <p>
+                Entre códigos, dados e projetos, existe espaço
+                para uma paixão: o futevôlei. Um esporte que
+                combina estratégia, dedicação, movimento
+                e trabalho em equipe.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contato">
+
+    <div class="reveal">
+
+        <div class="section-label">05 / VAMOS CONVERSAR?</div>
+
+        <h2 class="section-title">
+            Grandes ideias começam com uma <span>conexão.</span>
+        </h2>
+
+        <p class="section-description">
+            Estou sempre aberto a aprender, compartilhar ideias,
+            conhecer pessoas e explorar novas oportunidades.
+        </p>
+
+        <div class="contact-links">
+
+            <!-- SUBSTITUA PELO SEU LINK DO GITHUB -->
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                GitHub ↗
+            </a>
+
+            <!-- SUBSTITUA PELO SEU LINK DO LINKEDIN -->
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                LinkedIn ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <a href="#inicio" class="logo">rafael<span>.</span></a>
+
+    <p>© 2026 Rafael Lima. Desenvolvido com propósito.</p>
+
+    <div class="footer-social">
+        <a href="#inicio">Voltar ao topo ↑</a>
+    </div>
+
+</footer>
+
+<script>
+
+// SCROLL REVEAL
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+document.querySelectorAll('.reveal').forEach(element => {
+    observer.observe(element);
+});
+
+
+// NAVBAR SCROLL EFFECT
+
+const navbar = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+
+    if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(5,11,24,.92)';
+    } else {
+        navbar.style.background = 'rgba(5,11,24,.72)';
+    }
+
+}, { passive: true });
+
+
+// SUBTLE HERO PARALLAX
+
+const hero = document.querySelector('.hero');
+const orbit = document.querySelector('.hero-orbit');
+
+if (window.matchMedia('(pointer: fine)').matches) {
+
+    hero.addEventListener('mousemove', (event) => {
+
+        const x = (event.clientX / window.innerWidth - 0.5) * 15;
+        const y = (event.clientY / window.innerHeight - 0.5) * 15;
+
+        orbit.style.transform = `translate(${x}px, ${y}px)`;
+
+    });
+
+    hero.addEventListener('mouseleave', () => {
+        orbit.style.transform = 'translate(0, 0)';
+    });
+
+}
+
+</script>
+
+</body>
+</html>
